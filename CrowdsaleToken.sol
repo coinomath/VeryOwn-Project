@@ -1,23 +1,13 @@
 pragma solidity ^0.4.11;
 
-
-import "Pause.sol";
-import "Puller.sol";
-import "Token.sol";
 import "ERC20.sol;
 
-contract Crowdsale is Pause, Puller {
-    
-    using SafeMath for uint;
+contract VeryOwnCoin is ERC20 {
 
-  	struct Backer {
-		uint weiReceived; // Amount of Ether given
-		uint coinSent;
-	}
-    
 	//CONSTANTS
-	// Maximum number of TRIBE to sell
-	uint public constant MAX_CAP = 160000000000000; // 160 000 000 TRIBE
+	// Maximum number of VeryOwnCoin to sell
+	uint public constant _totalSupply = 240000000; // 240 000 000 VOC
+	string public constant _symbol = VOC;
 	// Minimum amount to invest
 	uint public constant MIN_INVEST_ETHER = 100 finney; // 0.1ETH
 	// Crowdsale period
