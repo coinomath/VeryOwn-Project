@@ -7,7 +7,45 @@ contract VeryOwnCoin is ERC20 {
 	//CONSTANTS
 	// Maximum number of VeryOwnCoin to sell
 	uint public constant _totalSupply = 240000000; // 240 000 000 VOC
-	string public constant _symbol = VOC;
+	
+	string public constant symbol = "VOC";
+	string public constant name = "VeryOwn Coin";
+	uint8 public constant decimals = 18
+	
+	mapping(address => uint256) balances;
+	mapping(address => mapping(address => uint256)) allowed;
+	
+	function VeryOwnCoin() {
+		balances[msg.sender] = _totalSupply;
+	}
+	
+	function totalSupply() constant returns (uint256 totalSupply) {
+		return _totalSupply;
+	
+	}
+	
+	function balanceOf(address _owner) constant returns (uint256 balance) {
+		return balances[_owner];
+	
+	}
+	function transfer(address _to, uint256 _value) returns (bool success) {
+		require (
+		balances[msg.sender] >= _value
+		&& _value > 0
+		);
+		balances[msg.sender] -= _value;
+		balances[_to] += _value;
+		Transfer(meg.sender, _to, _value);
+		return true;
+	}
+	
+	function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+	}
+	
+	
+	
+	
+	
 	// Minimum amount to invest
 	uint public constant MIN_INVEST_ETHER = 100 finney; // 0.1ETH
 	// Crowdsale period
