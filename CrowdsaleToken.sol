@@ -1,9 +1,10 @@
 pragma solidity ^0.4.11;
 
 
-import "./Pause.sol";
-import "./Puller.sol";
-import "./Token.sol";
+import "Pause.sol";
+import "Puller.sol";
+import "Token.sol";
+import "ERC20.sol;
 
 contract Crowdsale is Pause, Puller {
     
