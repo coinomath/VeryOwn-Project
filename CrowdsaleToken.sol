@@ -58,52 +58,8 @@ contract VeryOwnCoin is ERC20 {
 	
 	function allowance (address _owner, address _spender) constant returns (uint256 remaining)
 		return allowed[_owner][_spender];
-		
-	// Minimum amount to invest
-	uint public constant MIN_INVEST_ETHER = 50 finney; // 0.05 ETH
-	// Crowdsale period
-	uint private constant CROWDSALE_PERIOD = 31 days; // 22 days crowdsale run
-	// Number of VOC per Ether
-	uint public constant COIN_PER_ETHER = 2000; // 2000 VOC
-
-
-	//VARIABLES
-	// VOC contract reference
-	Token public coin;
-	// Number of Ether received
-	uint public etherReceived;
-	// Number of VOC sent to Ether contributors
-	uint public coinSentToEther;
-  	// Number of VOC to burn
-  	uint public coinToBurn;
-	// Crowdsale start time
-	uint public startTime;
-	// Crowdsale end time
-	uint public endTime;
- 	// Is crowdsale still on going
-	bool public crowdsaleClosed;
-	// Refund open variable
-	bool public refundsOpen;
-
-	// Backers Ether indexed by their Ethereum address
-	mapping(address => Backer) public backers;
-
-
-	//MODIFIERS
-	modifier respectTimeFrame() {
-		if ((now < startTime) || (now > endTime )) throw;
-		_;
 	}
 	
-	modifier refundStatus() {
-		if ((refunds != true )) throw;
-		_;
-	}
-
-	//EVENTS
-	event LogReceivedETH(address addr, uint value);
-	event LogCoinsEmited(address indexed from, uint amount);
-
-
-
+	event Transfer(address indexed _from, address indexed _to, uint256 _value);
+	event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 }
